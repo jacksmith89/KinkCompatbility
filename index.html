@@ -22,6 +22,9 @@
             <input type="text" id="userName" placeholder="e.g. Jack">
             <p><small>Click Category headers to expand. Hover over names for definitions.</small></p>
         </div>
+        <div class="category-block" style="padding: 15px;">
+    <input type="text" id="searchInput" placeholder="Search activities..." onkeyup="filterActivities(this.value)" style="width: 100%;">
+</div>
         <div id="survey-container"></div>
         <div class="action-area">
             <button id="btn-generate">Generate Shareable Code</button>
@@ -42,5 +45,12 @@
     </div>
 
     <script src="script.js"></script>
+    <div id="info-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
 </body>
 </html>

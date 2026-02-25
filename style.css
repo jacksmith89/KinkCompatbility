@@ -85,3 +85,91 @@ button { padding: 14px 28px; background: var(--accent); border:none; border-radi
     margin-top: 10px;
     color: var(--accent);
 }
+
+/* Mobile-Specific Layout */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #333;
+        margin-bottom: 15px;
+        background: #252525;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%; 
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .act-name {
+        width: 100% !important;
+        font-size: 1.1em;
+        color: var(--primary);
+        border-bottom: 1px solid #444;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    /* Replace Hover with a clickable Info icon style */
+    .act-name::after {
+        content: ' ⓘ';
+        font-size: 0.8em;
+        opacity: 0.6;
+    }
+}
+/* Modal Overlay (Background dim) */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* The Modal Box */
+.modal-content {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--primary);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-content h3 {
+    color: var(--primary);
+    margin-top: 0;
+}
+
+.modal-content p {
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+/* Animation for a smooth entrance */
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
