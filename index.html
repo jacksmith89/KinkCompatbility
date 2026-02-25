@@ -71,3 +71,151 @@
     </div>
 
     <div id="matrix-page" class="page">
+        <div class="category-block" style="padding: 20px;">
+            <p>Paste codes from your partners (one per line):</p>
+            <textarea id="compareBox" style="width: 100%; height: 120px;" placeholder="Paste strings here..."></textarea>
+            <button onclick="runComparison()" style="margin-top: 15px; background: var(--primary); color: #000;">Analyze Group Matrix</button>
+        </div>
+        <div id="matrix-results"></div>
+    </div>
+
+<script>
+    // --- MASTER LIST DATA ---
+    const masterData = {
+        "Essentials": [
+            { id: "E01", name: "Aftercare", desc: "The physical and emotional care provided after a high-intensity scene to ensure everyone feels safe and grounded." },
+            { id: "E02", name: "Safe Words", desc: "Using predetermined signals (Red/Yellow/Green) to communicate limits during play." }
+        ],
+        "Impact Play": [
+            { id: "I01", name: "Spanking", desc: "Striking the buttocks with an open hand or a flat implement for sensation or discipline." },
+            { id: "I02", name: "Cane/Wand Play", desc: "High-intensity impact using thin, stingy implements." }
+        ],
+        "Sensation": [
+            { id: "S01", name: "Blindfolds", desc: "Removing sight to heighten other senses and increase anticipation." },
+            { id: "S02", name: "Wax Play", desc: "Dripping low-temperature candle wax onto the skin for sensory stimulation." }
+        ]
+    };
+
+    // --- RENDER SURVEY ---
+    const container = document.getElementById('survey-container');
+    for (const [category, items] of Object.entries(masterData)) {
+        let sectionHtml = `
+            <div class="category-block">
+                <div class="category-header" onclick="toggleCat(this)">${category} <span>+</span></div>
+                <div class="category-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Activity</th>
+                                <th colspan="2" style="background:#3700b3;color:#fff;">GIVING</th>
+                                <th colspan="2" style="background:#3700b3;color:#fff;">RECEIVING</th>
+                            </tr>
+                            <tr>
+                                <th>Hist</th><th>Int</th><th>Hist</th><th>Int</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+        
+        items.forEach(item => {
+            sectionHtml += `
+                <tr>
+                    <td class="act-name" data-tooltip="${item.desc}">${item.name}</td>
+                    <td><input type="checkbox" class="hist-check" id="gh-${item.id}"></td>
+                    <td>
+                        <select id="gs-${item.id}">
+                            ${[1,2,3,4,5].map(v => `<option value="${v}" ${v==3?'selected':''}>${v}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td><input type="checkbox" class="hist-check" id="rh-${item.id}"></td>
+                    <td>
+                        <select id="rs-${item.id}">
+                            ${[1,2,3,4,5].map(v => `<option value="${v}" ${v==3?'selected':''}>${v}</option>`).join('')}
+                        </select>
+                    </td>
+                </tr>`;
+        });
+        sectionHtml += `</tbody></table></div></div>`;
+        container.innerHTML += sectionHtml;
+    }
+
+    // --- UI LOGIC ---
+    function toggleCat(el) {
+        const content = el.nextElementSibling;
+        content.classList.toggle('open');
+        el.querySelector('span').innerText = content.classList.contains('open') ? '-' : '+';
+    }
+
+    function showPage(pageId, tabEl) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        tabEl.classList.add('active');
+    }
+
+    // --- DATA LOGIC ---
+    function generateShortCode() {
+        const name = document.getElementById('userName').value || "Anon";
+        const responses = {};
+        
+        // Loop through all items across all categories
+        Object.values(masterData).forEach(items => {
+            items.forEach(item => {
+                responses[item.id] = [
+                    document.getElementById(`gh-${item.id}`).checked ? 1 : 0,
+                    parseInt(document.getElementById(`gs-${item.id}`).value),
+                    document.getElementById(`rh-${item.id}`).checked ? 1 : 0,
+                    parseInt(document.getElementById(`rs-${item.id}`).value)
+                ];
+            });
+        });
+
+        const jsonStr = JSON.stringify({ n: name, r: responses });
+        const compressed = pako.deflate(jsonStr);
+        const base64 = btoa(String.fromCharCode.apply(null, compressed));
+        
+        document.getElementById('outputCode').innerText = base64;
+        document.getElementById('outputContainer').style.display = 'block';
+    }
+
+    function runComparison() {
+        const raw = document.getElementById('compareBox').value.trim();
+        if (!raw) return;
+        
+        const codes = raw.split('\n');
+        const participants = codes.map(c => {
+            try {
+                const bin = new Uint8Array(atob(c.trim()).split('').map(x => x.charCodeAt(0)));
+                return JSON.parse(pako.inflate(bin, { to: 'string' }));
+            } catch(e) { return null; }
+        }).filter(p => p !== null);
+
+        if (participants.length === 0) return;
+
+        let resultHtml = "<table><thead><tr><th rowspan='2'>Activity</th>";
+        participants.forEach(p => resultHtml += `<th colspan='2' style='background: #3700b3; color:#fff;'>${p.n}</th>`);
+        resultHtml += "</tr><tr>";
+        participants.forEach(() => resultHtml += "<th>Give</th><th>Rec</th>");
+        resultHtml += "</tr></thead><tbody>";
+
+        // Loop through the master list to build the matrix
+        Object.values(masterData).forEach(items => {
+            items.forEach(item => {
+                let rowHtml = `<tr><td class='act-name' data-tooltip="${item.desc}">${item.name}</td>`;
+                let isRelevant = false;
+
+                participants.forEach(p => {
+                    const d = p.r[item.id] || [0, 1, 0, 1]; // Fallback for missing IDs
+                    if (d[1] >= 3 || d[3] >= 3) isRelevant = true;
+                    rowHtml += `<td class="m-${d[1]}">${d[1] >= 3 ? d[1] : ''}</td>`;
+                    rowHtml += `<td class="m-${d[3]}">${d[3] >= 3 ? d[3] : ''}</td>`;
+                });
+
+                if (isRelevant) resultHtml += rowHtml + "</tr>";
+            });
+        });
+
+        document.getElementById('matrix-results').innerHTML = resultHtml + "</tbody></table>";
+    }
+</script>
+</body>
+</html>
