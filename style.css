@@ -1,175 +1,805 @@
-:root { 
-    --primary: #bb86fc; 
-    --bg: #121212; 
-    --card: #1e1e1e; 
-    --text: #e0e0e0; 
-    --accent: #03dac6; 
+/* =========================================================
+   VELVET INTERFACE – CORE THEME
+========================================================= */
+
+:root {
+    --bg: #141216;
+    --surface: #1c1822;
+    --elevated: #241f2c;
+
+    --text-primary: #f3eafc;
+    --text-secondary: #b9a8cc;
+
+    --accent-gold: #d4a373;
+    --accent-violet: #a876ff;
+    --danger: #d66a6a;
+
+    --radius-lg: 16px;
+    --radius-md: 14px;
+    --radius-sm: 12px;
+
+    --shadow-soft: 0 6px 20px rgba(0,0,0,0.35);
+    --transition-fast: 150ms ease;
 }
 
-body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background: var(--bg); 
-    color: var(--text); 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    padding: 20px; 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-.category-block { 
-    background: var(--card); 
-    border-radius: 8px; 
-    margin-bottom: 12px; 
-    border: 1px solid #333; 
-    overflow: hidden; 
+body {
+    margin: 0;
+    padding: 0; /* Changed from 20px to 0 to let the wrapper handle spacing */
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    
+    /* Ensure the body itself doesn't scroll horizontally */
+    overflow-x: hidden;
 }
 
-.category-header { 
-    background: #2c2c2c; 
-    padding: 15px; 
-    cursor: pointer; 
-    display: flex; 
-    justify-content: space-between; 
-    font-weight: bold; 
-    color: var(--primary); 
+/* ---------------------------------------------------------
+   CONTENT WRAPPER - Centered Column Logic
+--------------------------------------------------------- */
+.app-wrapper {
+    width: 100%;
+    max-width: 1200px; /* The 'Sweet Spot' for desktop readability */
+    margin: 0 auto;   /* Centering the column */
+    padding: 20px;    /* Provides breathing room on the sides of the mobile screen */
+    
+    /* Optional: Subtle vertical border to define the 'App' space on ultra-wide monitors */
+    min-height: 100vh;
 }
 
-.category-content { 
-    display: none; 
-    padding: 10px; 
-    overflow-x: auto; 
-}
+/* =========================================================
+   HERO SECTION – VELVET INTERFACE (STABLE TRANSITION MODEL)
+========================================================= */
 
-.category-content.open { display: block; }
-
-table { width: 100%; border-collapse: collapse; font-size: 0.9em; min-width: 600px; }
-th { background: #333; padding: 10px; border: 1px solid #444; }
-td { border: 1px solid #333; padding: 8px; text-align: center; }
-
-.act-name { 
-    text-align: left; 
-    width: 35%; 
-    font-weight: bold; 
-    position: relative; 
-    cursor: help; 
-    border-bottom: 1px dashed #555; 
-}
-
-.act-name:hover::after {
-    content: attr(data-tooltip);
-    position: absolute; left: 0; top: 100%;
-    background: #2c2c2c; color: #fff; padding: 12px; border-radius: 6px;
-    width: 280px; z-index: 100; font-weight: normal; font-size: 0.85em;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.6); border: 1px solid var(--primary);
-}
-
-.m-3 { background: #f1c40f; color: #000; } 
-.m-4 { background: #2ecc71; color: #000; }
-.m-5 { background: #9b59b6; color: #fff; }
-
-.nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-.tab { padding: 12px 24px; background: #333; border-radius: 5px; cursor: pointer; }
-.tab.active { background: var(--primary); color: #000; font-weight: bold; }
-
-.page { display: none; }
-.page.active { display: block; }
-
-input, select, textarea { background: #000; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 4px; }
-button { padding: 14px 28px; background: var(--accent); border:none; border-radius:6px; font-weight:bold; cursor: pointer; }
-
-#outputCode { 
-    word-break: break-all; 
-    background: #000; 
-    padding: 20px; 
-    border: 1px dashed var(--primary); 
-    font-family: monospace; 
-    margin-top: 10px;
-    color: var(--accent);
-}
-
-/* Mobile-Specific Layout */
-@media (max-width: 600px) {
-    table, thead, tbody, th, td, tr { 
-        display: block; 
-    }
-
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr {
-        border: 1px solid #333;
-        margin-bottom: 15px;
-        background: #252525;
-        border-radius: 8px;
-        padding: 10px;
-    }
-
-    td {
-        border: none;
-        position: relative;
-        padding-left: 50%; 
-        text-align: left;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .act-name {
-        width: 100% !important;
-        font-size: 1.1em;
-        color: var(--primary);
-        border-bottom: 1px solid #444;
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-    }
-
-    /* Replace Hover with a clickable Info icon style */
-    .act-name::after {
-        content: ' ⓘ';
-        font-size: 0.8em;
-        opacity: 0.6;
-    }
-}
-/* Modal Overlay (Background dim) */
-.modal-overlay {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 2000;
-    justify-content: center;
+#hero-section {
+    min-height: 100vh;
+    display: flex;
     align-items: center;
+    justify-content: center;
+
+    padding: 60px 20px;
+
+    text-align: center;
+    overflow: hidden;
+
+    /* Prevent reflow jitter when app container appears */
+    contain: layout paint;
+
+    transition:
+        padding 0.6s ease,
+        min-height 0.6s ease,
+        max-height 0.6s ease,
+        background 0.6s ease;
+}
+
+/* ---------------------------------------------------------
+   Hero Content Container
+--------------------------------------------------------- */
+
+.hero-content {
+    max-width: 640px;
+
+    position: relative;
+
+    /* GPU stabilization */
+    transform: translateY(0);
+    will-change: opacity, transform;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.6s ease;
+}
+
+/* Title */
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+/* Subtitle + Description */
+
+.hero-subtitle,
+.hero-description {
+    color: var(--text-secondary);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    margin-bottom: 32px;
+}
+
+/* ---------------------------------------------------------
+   Begin Button
+--------------------------------------------------------- */
+
+.primary-btn {
+    background: var(--accent-gold);
+    color: #1a1410;
+
+    padding: 14px 28px;
+
+    border: none;
+    border-radius: var(--radius-md);
+
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: var(--shadow-soft);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.5s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
+/* ---------------------------------------------------------
+   Exit Animation State
+--------------------------------------------------------- */
+
+#hero-section.hero-exiting {
+    min-height: auto;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* shift h1 to top during exit */
+}
+
+/* Fade out paragraphs and button */
+#hero-section.hero-exiting .hero-subtitle,
+#hero-section.hero-exiting .hero-description,
+#hero-section.hero-exiting #btn-begin {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transition:
+        opacity 1s ease,
+        height 1s ease,
+        margin 1s ease,
+        padding 1s ease;
+}
+
+/* Slight lift of the h1 and hero content block */
+#hero-section.hero-exiting .hero-content {
+    transform: translateY(-10px);
+    transition: transform 1s ease;
+}
+
+
+/* ---------------------------------------------------------
+  App Reveal Container
+  - Visibility is driven by the `.hidden` and `.visible` classes
+    so JS can toggle display without fighting an ID selector.
+--------------------------------------------------------- */
+
+#app-container {
+    display: block; /* base layout is available, hidden state uses `.hidden` */
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+/* Hidden utility class used in HTML/JS */
+.hidden#app-container,
+#app-container.hidden {
+    display: none;
+}
+
+#app-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------------------------------------------------
+   Mobile Optimization
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    #hero-section {
+        padding: 40px 16px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .primary-btn {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-tabs {
+    display: flex;
+    gap: 12px;
     padding: 20px;
 }
 
-/* The Modal Box */
-.modal-content {
-    background: var(--card);
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid var(--primary);
-    max-width: 400px;
+.tab {
+    background: var(--surface);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-soft);
+}
+
+.tab.active {
+    color: var(--text-primary);
+    background: var(--elevated);
+}
+
+/* =========================================================
+   SURVEY STRUCTURE
+========================================================= */
+
+.page {
+    padding: 20px;
+}
+
+.surface {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   STICKY LEGEND
+========================================================= */
+
+#sticky-legend {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(28,24,34,0.85);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.legend-full {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Make the small legend dots match the scale colors without the large card shadow */
+.legend-item .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: none;
+    opacity: 1;
+    display: inline-block;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-section input {
     width: 100%;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--elevated);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.search-section input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-violet);
+}
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+.category-block {
+    margin-bottom: 20px;
+}
+
+.category-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    background: var(--surface);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-fast);
+}
+
+.category-header:hover {
+    transform: translateY(-2px);
+}
+
+.category-content {
+    margin-top: 12px;
+    display: none;
+    animation: fadeSlide 180ms ease;
+}
+
+.category-content.open {
+    display: block;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   ACTIVITY CARDS
+========================================================= */
+
+/* Tooltip for descriptions */
+.act-name-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    font-size: 0.8rem;
+    border: 1px solid var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.tooltip-icon:hover,
+.tooltip-icon:focus {
+    background: var(--surface);
+}
+
+.tooltip-text {
+    position: absolute;
+    top: -12px;
+    left: 100%;
+    margin-left: 10px; /* Give it a little more breathing room */
+    
+    /* THE FIX */
+    width: max-content; 
+    /* This ensures it tries to stay on one line unless it hits the max-width below */
+    
+    max-width: 220px; 
+    /* Set a reasonable limit so it doesn't go off-screen on desktop */
+    
+    background: var(--surface);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    z-index: 200;
+}
+
+.tooltip-text.active,
+.tooltip-icon:hover + .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.activity-card {
+    background: var(--surface);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.act-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.activity-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.side {
+    margin-bottom: 20px;
+}
+
+.row-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.row-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================================================
+   LUXURY DOT SCALE
+========================================================= */
+
+.scale {
+    display: flex;
+    gap: 12px;
+}
+
+.scale .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: var(--transition-fast);
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.4),
+        0 4px 10px rgba(0,0,0,0.4);
+}
+
+.scale .dot:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.scale .dot.selected {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+/* Selected shadow should be a darker/tinted halo based on the dot color */
+.scale .dot.val-1.selected { box-shadow: 0 0 0 6px rgba(214,106,106,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-2.selected { box-shadow: 0 0 0 6px rgba(227,157,101,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-3.selected { box-shadow: 0 0 0 6px rgba(232,194,103,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-4.selected { box-shadow: 0 0 0 6px rgba(138,203,136,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-5.selected { box-shadow: 0 0 0 6px rgba(110,168,255,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-0.selected { box-shadow: 0 0 0 6px rgba(180,180,180,0.12), 0 6px 18px rgba(0,0,0,0.45); }
+
+/* Dot Colors */
+.val-1 { background: #d66a6a; }
+.val-2 { background: #e39d65; }
+.val-3 { background: #e8c267; }
+.val-4 { background: #8acb88; }
+.val-5 { background: #6ea8ff; }
+.val-0 { background: #ccc; }
+
+/* Selected text reveal */
+.scale-selection-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.scale-selection-text.fading-out {
+    opacity: 0;
+}
+
+/* =========================================================
+   INPUTS & TOGGLES
+========================================================= */
+
+input[type="text"],
+textarea {
+    background: var(--elevated);
+    color: var(--text-primary);
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    width: 100%;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+.tried .switch {
+    width: 40px;
+    height: 22px;
+    border-radius: 20px;
+    background: var(--elevated);
+    position: relative;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.tried .switch::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.tried input:checked + .switch {
+    background: var(--accent-violet);
+}
+
+.tried input:checked + .switch::after {
+    transform: translateX(18px);
+}
+
+/* Hide the native checkbox visually but keep it accessible */
+.tried input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Layout for the tried control with text */
+.tried {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tried .tried-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .scale .dot {
+        width: 25px;
+        height: 25px;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .row-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .primary-btn {
+        width: 100%;
+    }
+}
+
+    .tooltip-text {
+        left: 0;
+        top: auto;
+        bottom: 110%; /* Positions it above the icon */
+        margin-left: 0;
+        width: calc(100vw - 80px); /* Fill the width of the card area */
+        max-width: 300px;
+    }
+
+/* =========================================================
+   MATRIX – COMPATIBILITY CARD SYSTEM
+   (Separate from Survey Styling)
+========================================================= */
+
+.matrix-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+/* Individual Compatibility Card */
+.matrix-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+/* Strong Match Highlight */
+.matrix-card.strong-match {
+    box-shadow:
+        0 0 0 2px rgba(212,163,115,0.6),
+        0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* Activity Title */
+.matrix-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+/* Two Column Layout */
+.matrix-columns {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+/* Individual Participant Column */
+.matrix-column {
+    flex: 1;
+    background: var(--elevated);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Participant Name */
+.matrix-column h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Rating Row */
+.matrix-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+/* Rating Label (Giving / Receiving) */
+.matrix-rating span.label {
+    color: var(--text-secondary);
+}
+
+/* Rating Value Bubble */
+.matrix-rating span.value {
+    background: var(--surface);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+}
+
+/* High Preference Emphasis */
+.matrix-rating.high span.value {
+    background: var(--accent-gold);
+    color: #1a1410;
+}
+
+/* Medium Preference */
+.matrix-rating.medium span.value {
+    background: var(--accent-violet);
+    color: white;
+}
+
+/* Low / Neutral Preference */
+.matrix-rating.low span.value {
+    background: #555;
+    color: #ddd;
+}
+
+/* Compatibility Indicator Bar */
+.matrix-compat-bar {
+    margin-top: 20px;
+    height: 6px;
+    border-radius: 6px;
+    background: var(--elevated);
+    overflow: hidden;
+}
+
+.matrix-compat-fill {
+    height: 100%;
+    background: var(--accent-gold);
+    transition: width 300ms ease;
+}
+
+/* Subtle Hover Elevation */
+.matrix-card:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.matrix-empty {
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    animation: slideUp 0.3s ease-out;
+    color: var(--text-secondary);
+    margin-top: 40px;
 }
 
-.modal-content h3 {
-    color: var(--primary);
-    margin-top: 0;
-}
+/* =========================================================
+   MOBILE OPTIMIZATION
+========================================================= */
 
-.modal-content p {
-    line-height: 1.6;
-    margin: 20px 0;
-}
+@media (max-width: 768px) {
 
-/* Animation for a smooth entrance */
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    .matrix-columns {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .matrix-card {
+        padding: 20px;
+    }
+
+    .matrix-column {
+        padding: 14px;
+    }
 }

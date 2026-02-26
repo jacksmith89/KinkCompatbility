@@ -3,54 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kink Negotiator Master</title>
+
+    <title>Kink Negotiator</title>
+
+    <!-- Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Compression Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <h1>Kink Negotiator Matrix</h1>
+    <div class="app-wrapper">
 
-    <div class="nav-tabs">
-        <div class="tab active" id="tab-survey">1. Survey</div>
-        <div class="tab" id="tab-matrix">2. Comparison Matrix</div>
-    </div>
-
-    <div id="survey-page" class="page active">
-        <div class="category-block name-input-block">
-            <label>Your Name: </label>
-            <input type="text" id="userName" placeholder="e.g. Jack">
-            <p><small>Click Category headers to expand. Hover over names for definitions.</small></p>
+    <!-- HERO / ONBOARDING -->
+    <section id="hero-section">
+        <div class="hero-content">
+            <h1>Kink Negotiator</h1>
+            <p class="hero-subtitle">
+                A private space to explore desire safely.
+            </p>
+            <p class="hero-description">
+                This tool helps partners understand compatibility without pressure.
+                Your responses are encrypted locally and only shared when you choose.
+            </p>
+            <button id="btn-begin" class="primary-btn">
+                Begin Exploring
+            </button>
         </div>
-        <div class="category-block" style="padding: 15px;">
-    <input type="text" id="searchInput" placeholder="Search activities..." onkeyup="filterActivities(this.value)" style="width: 100%;">
-</div>
-        <div id="survey-container"></div>
-        <div class="action-area">
-            <button id="btn-generate">Generate Shareable Code</button>
-            <div id="outputContainer" style="display:none;">
-                <p><strong>Your Encrypted String:</strong></p>
-                <div id="outputCode"></div>
+    </section>
+
+
+    <!-- MAIN APPLICATION (Hidden Until Begin) -->
+    <div id="app-container" class="hidden">
+
+        <!-- NAVIGATION -->
+        <div class="nav-tabs">
+            <button class="tab active" id="tab-survey">Survey</button>
+            <button class="tab" id="tab-matrix">Compatibility</button>
+        </div>
+
+
+        <!-- SURVEY PAGE -->
+        <div id="survey-page" class="page active">
+
+
+            <!-- NAME INPUT -->
+            <div class="name-section surface">
+                <!-- <label for="userName">Your Name</label> -->
+                <input type="text" id="userName" placeholder="Your Name (Optional)">
             </div>
+
+
+            <!-- SEARCH -->
+            <div class="search-section surface">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search fantasies, limits, curiosities..."
+                >
+            </div>
+
+            <!-- STICKY SCALE LEGEND (Single Instance) -->
+            <div id="sticky-legend">
+                <div class="legend-full">
+                    <div class="legend-item"><span class="dot val-1"></span>Hard Limit</div>
+                    <div class="legend-item"><span class="dot val-2"></span>Maybe</div>
+                    <div class="legend-item"><span class="dot val-3"></span>Sometimes</div>
+                    <div class="legend-item"><span class="dot val-4"></span>Like</div>
+                    <div class="legend-item"><span class="dot val-5"></span>Love</div>
+                    <div class="legend-item"><span class="dot val-0"></span>No Selection</div>
+                </div>
+            </div>
+
+
+            <!-- SURVEY CONTENT (Generated via JS) -->
+            <div id="survey-container"></div>
+
+
+            <!-- GENERATE CODE -->
+            <div class="action-area">
+                <button id="btn-generate" class="primary-btn">
+                    Generate Encrypted Code
+                </button>
+
+                <div id="outputContainer" class="hidden">
+                    <p>Your Encrypted String</p>
+                    <div id="outputCode"></div>
+                </div>
+            </div>
+
         </div>
+
+
+        <!-- MATRIX PAGE -->
+        <div id="matrix-page" class="page">
+
+            <div class="matrix-input surface">
+                <p>Paste codes from partners (one per line):</p>
+                <textarea id="compareBox" placeholder="Paste encrypted strings here..."></textarea>
+                <button id="btn-compare" class="primary-btn">
+                    Analyze Compatibility
+                </button>
+            </div>
+
+            <!-- Matrix Results (Cards Rendered Here) -->
+            <div id="matrix-results" class="matrix-card-container"></div>
+
+        </div>
+
     </div>
 
-    <div id="matrix-page" class="page">
-        <div class="category-block" style="padding: 20px;">
-            <p>Paste codes from your partners (one per line):</p>
-            <textarea id="compareBox" placeholder="Paste strings here..."></textarea>
-            <button id="btn-compare">Analyze Group Matrix</button>
-        </div>
-        <div id="matrix-results"></div>
-    </div>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
-    <div id="info-modal" class="modal-overlay">
-    <div class="modal-content">
-        <h3 id="modal-title"></h3>
-        <p id="modal-desc"></p>
-        <button onclick="closeModal()">Close</button>
-    </div>
-</div>
+    </div class="app-wrapper">
+
 </body>
 </html>
