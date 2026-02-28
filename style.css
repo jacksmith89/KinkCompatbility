@@ -154,6 +154,23 @@ h1 {
     box-shadow: 0 8px 24px rgba(0,0,0,0.45);
 }
 
+.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.secondary-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
+}
+
 /* ---------------------------------------------------------
    Exit Animation State
 --------------------------------------------------------- */
@@ -249,7 +266,8 @@ h1 {
 .nav-tabs {
     display: flex;
     gap: 12px;
-    padding: 20px;
+    padding: 20px 20px 0px;
+    align-items: center;
 }
 
 .tab {
@@ -268,12 +286,43 @@ h1 {
     background: var(--elevated);
 }
 
+.nav-icon-btn {
+    margin-left: auto; /* Pushes to the right */
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    display: flex;
+}
+
+.nav-icon-btn:hover {
+    color: var(--accent-gold);
+    background: rgba(255,255,255,0.05);
+}
+
 /* =========================================================
    SURVEY STRUCTURE
 ========================================================= */
 
+#page-viewport {
+    width: 100%;
+    clip-path: inset(0 0 0 0); /* Hides overflow while preserving sticky context */
+}
+
+#page-slider {
+    display: flex;
+    width: 200%;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+}
+
 .page {
     padding: 20px;
+    width: 50%;
+    flex-shrink: 0;
 }
 
 .surface {
@@ -282,6 +331,66 @@ h1 {
     padding: 20px;
     margin-bottom: 24px;
     box-shadow: var(--shadow-soft);
+}
+
+.action-area {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.controls-row {
+    display: flex;
+    justify-content: space-between; /* Pushes items to the far left and far right */
+    gap: 16px;
+    padding: 20px 20px 0 20px;
+    align-items: flex-end;
+}
+
+.name-section, .search-section {
+    width: 48%; /* Optional: Gives them a consistent size without touching in the middle */
+}
+.name-section {
+    text-align: left;
+}
+.search-section {
+    text-align: right;
+}
+
+/* Unobtrusive Inputs */
+.controls-row input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+    margin: 0;
+}
+
+.controls-row input:focus {
+    outline: none;
+    border-bottom-color: var(--accent-gold);
+    box-shadow: none;
+}
+
+/* Search Icon */
+.search-wrapper {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+    pointer-events: none;
 }
 
 /* =========================================================
@@ -323,25 +432,6 @@ h1 {
     box-shadow: none;
     opacity: 1;
     display: inline-block;
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-section input {
-    width: 100%;
-    padding: 16px;
-    border-radius: var(--radius-md);
-    border: none;
-    background: var(--elevated);
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.search-section input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent-violet);
 }
 
 /* =========================================================
@@ -779,63 +869,13 @@ textarea {
     background: var(--elevated);
     color: var(--text-primary);
     border: none;
-    padding: 14px;
+    padding: 6px;
     border-radius: var(--radius-md);
-    width: 100%;
+    width: 50%;
 }
 
 textarea {
     min-height: 120px;
-}
-
-.tried .switch {
-    width: 40px;
-    height: 22px;
-    border-radius: 20px;
-    background: var(--elevated);
-    position: relative;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
-}
-
-.tried .switch::after {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    background: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.tried input:checked + .switch {
-    background: var(--accent-violet);
-}
-
-.tried input:checked + .switch::after {
-    transform: translateX(18px);
-}
-
-/* Hide the native checkbox visually but keep it accessible */
-.tried input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Layout for the tried control with text */
-.tried {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tried .tried-label {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    user-select: none;
 }
 
 /* =========================================================
@@ -847,16 +887,6 @@ textarea {
     h1 {
         font-size: 2.2rem;
     }
-
-    /* .scale .dot {
-        width: 25px;
-        height: 25px;
-    }
-    .scale .dot.selected {
-        width: 25px;
-        height: 25px;
-        } */
-
     .activity-grid {
         grid-template-columns: 1fr;
     }
@@ -889,6 +919,43 @@ textarea {
         width: calc(100vw - 80px); /* Fill the width of the card area */
         max-width: 300px;
     }
+
+    .nav-tabs {
+        padding: 20px;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+
+    @media (max-width: 600px) {
+
+    /* 1. Reduce the padding of the section itself */
+    #hero-section {
+        padding: 20px 16px 0px 16px; /* Reduced top/bottom padding */
+    }
+
+    /* 2. Tighten the margin around the text itself */
+    h1 {
+        font-size: 2.2rem;
+        margin-top: 20;
+        margin-bottom: 8px; /* Default is usually much larger */
+    }
+
+    /* 3. Adjust the 'Exiting' state so it collapses further */
+    #hero-section.hero-exiting {
+        padding-top: 10px;    /* Pulls h1 closer to the top */
+        padding-bottom: 0px; 
+        height: auto;         /* Allow it to shrink to its smallest content */
+    }
+
+    /* 4. Reduce spacing at the top of the controls row */
+    .controls-row {
+        padding-top: 10px; /* Reduces space between Title and Inputs */
+    }
+}
+    
+
+
 }
 
 /* =========================================================

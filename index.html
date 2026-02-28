@@ -41,80 +41,95 @@
     <!-- MAIN APPLICATION (Hidden Until Begin) -->
     <div id="app-container" class="hidden">
 
+        <!-- HEADER CONTROLS (Name & Search) -->
+        <div class="controls-row">
+            <div class="name-section">
+                <input type="text" id="userName" placeholder="Your Name">
+            </div>
+
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
         <!-- NAVIGATION -->
         <div class="nav-tabs">
             <button class="tab active" id="tab-survey">Survey</button>
             <button class="tab" id="tab-matrix">Compatibility</button>
+
+            <!-- Randomize / Test Button -->
+            <button id="btn-randomize" class="nav-icon-btn" title="Randomize Results (Test)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 8h.01"></path><path d="M8 8h.01"></path>
+                    <path d="M8 16h.01"></path><path d="M16 16h.01"></path>
+                    <path d="M12 12h.01"></path>
+                </svg>
+            </button>
         </div>
 
 
-        <!-- SURVEY PAGE -->
-        <div id="survey-page" class="page active">
+        <!-- PAGE VIEWPORT (Slider Wrapper) -->
+        <div id="page-viewport">
+            <div id="page-slider">
+
+                <!-- SURVEY PAGE -->
+                <div id="survey-page" class="page active">
+
+                    <!-- STICKY SCALE LEGEND (Single Instance) -->
+                    <div id="sticky-legend">
+                        <div class="legend-full">
+                            <div class="legend-item"><span class="dot val-0"></span>No Selection</div>
+                            <div class="legend-item"><span class="dot val-6"></span>Curious</div>
+                            <div class="legend-item"><span class="dot val-1"></span>Hard Limit</div>
+                            <div class="legend-item"><span class="dot val-2"></span>Maybe</div>
+                            <div class="legend-item"><span class="dot val-3"></span>Sometimes</div>
+                            <div class="legend-item"><span class="dot val-4"></span>Like It</div>
+                            <div class="legend-item"><span class="dot val-5"></span>Favorite</div>
+                        </div>
+                    </div>
 
 
-            <!-- NAME INPUT -->
-            <div class="name-section surface">
-                <!-- <label for="userName">Your Name</label> -->
-                <input type="text" id="userName" placeholder="Your Name (Optional)">
-            </div>
+                    <!-- SURVEY CONTENT (Generated via JS) -->
+                    <div id="survey-container"></div>
 
 
-            <!-- SEARCH -->
-            <div class="search-section surface">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Search fantasies, limits, curiosities..."
-                >
-            </div>
+                    <!-- GENERATE CODE -->
+                    <div class="action-area">
+                        <button id="btn-generate" class="primary-btn">
+                            Generate Encrypted Code
+                        </button>
 
-            <!-- STICKY SCALE LEGEND (Single Instance) -->
-            <div id="sticky-legend">
-                <div class="legend-full">
-                    <div class="legend-item"><span class="dot val-0"></span>No Selection</div>
-                    <div class="legend-item"><span class="dot val-6"></span>Curious</div>
-                    <div class="legend-item"><span class="dot val-1"></span>Hard Limit</div>
-                    <div class="legend-item"><span class="dot val-2"></span>Maybe</div>
-                    <div class="legend-item"><span class="dot val-3"></span>Sometimes</div>
-                    <div class="legend-item"><span class="dot val-4"></span>Like It</div>
-                    <div class="legend-item"><span class="dot val-5"></span>Favorite</div>
+                        <div id="outputContainer" class="hidden">
+                            <p>Your Encrypted String</p>
+                            <div id="outputCode"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- MATRIX PAGE -->
+                <div id="matrix-page" class="page">
+
+                    <div class="matrix-input surface">
+                        <p>Paste codes from partners (one per line):</p>
+                        <textarea id="compareBox" placeholder="Paste encrypted strings here..."></textarea>
+                        <button id="btn-compare" class="primary-btn">
+                            Analyze Compatibility
+                        </button>
+                    </div>
+
+                    <!-- Matrix Results (Cards Rendered Here) -->
+                    <div id="matrix-results" class="matrix-card-container"></div>
+
                 </div>
             </div>
-
-
-            <!-- SURVEY CONTENT (Generated via JS) -->
-            <div id="survey-container"></div>
-
-
-            <!-- GENERATE CODE -->
-            <div class="action-area">
-                <button id="btn-generate" class="primary-btn">
-                    Generate Encrypted Code
-                </button>
-
-                <div id="outputContainer" class="hidden">
-                    <p>Your Encrypted String</p>
-                    <div id="outputCode"></div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- MATRIX PAGE -->
-        <div id="matrix-page" class="page">
-
-            <div class="matrix-input surface">
-                <p>Paste codes from partners (one per line):</p>
-                <textarea id="compareBox" placeholder="Paste encrypted strings here..."></textarea>
-                <button id="btn-compare" class="primary-btn">
-                    Analyze Compatibility
-                </button>
-            </div>
-
-            <!-- Matrix Results (Cards Rendered Here) -->
-            <div id="matrix-results" class="matrix-card-container"></div>
-
         </div>
 
     </div>
@@ -122,7 +137,7 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
-    </div class="app-wrapper">
+    </div>
 
 </body>
 </html>

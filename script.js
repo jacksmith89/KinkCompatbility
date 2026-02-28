@@ -426,6 +426,9 @@ function setupEventListeners() {
     /* Generate Code */
     document.getElementById("btn-generate")?.addEventListener("click", generateShortCode);
 
+    /* Randomize (Test) */
+    document.getElementById("btn-randomize")?.addEventListener("click", randomizeResults);
+
     /* Compare */
     document.getElementById("btn-compare")?.addEventListener("click", runComparison);
 
@@ -491,6 +494,14 @@ function showPage(pageId, tabId) {
 
     document.getElementById(pageId).classList.add("active");
     document.getElementById(tabId).classList.add("active");
+
+    /* Handle Slider Transform */
+    const slider = document.getElementById("page-slider");
+    if (slider) {
+        // If Survey is active, translate 0%. If Matrix (or other), translate -50%.
+        const translateX = (pageId === "survey-page") ? "0%" : "-50%";
+        slider.style.transform = `translateX(${translateX})`;
+    }
 }
 
 /* =========================================================
@@ -512,9 +523,9 @@ function generateShortCode() {
                 
                 if (gs && rs) {
                     responses[item.id] = [
-                        gh.checked ? 1 : 0,
+                        gh ? (gh.checked ? 1 : 0) : 0,
                         parseInt(gs.value),
-                        rh.checked ? 1 : 0,
+                        rh ? (rh.checked ? 1 : 0) : 0,
                         parseInt(rs.value)
                     ];
                 }
@@ -532,6 +543,31 @@ function generateShortCode() {
     const output = document.getElementById("outputCode");
     output.textContent = code;
     document.getElementById("outputContainer").classList.remove("hidden");
+}
+
+function randomizeResults() {
+    const scales = document.querySelectorAll(".scale");
+    
+    scales.forEach(scale => {
+        const targetId = scale.dataset.target;
+        const input = document.getElementById(targetId);
+        if (!input) return;
+
+        // Random value between 0 and 6
+        const val = Math.floor(Math.random() * 7);
+        
+        // Update hidden input
+        input.value = val;
+
+        // Update visual dots
+        scale.querySelectorAll(".dot").forEach(dot => {
+            const dotVal = parseInt(dot.dataset.value);
+            dot.classList.toggle("selected", dotVal === val);
+        });
+
+        // Update label
+        updateSelectionLabel(targetId, val);
+    });
 }
 
 /* =========================================================
