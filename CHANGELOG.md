@@ -1,32 +1,99 @@
-Changelog v0.6
-Architectural Changes
-Data Hierarchy Migration: Refactored masterData from a flat category list to a nested object structure supporting Category > Subcategory > Activity.
+# CHANGELOG.md
 
-Recursive Logic Engine: Updated survey rendering, code generation, and matrix comparison functions to recursively traverse nested data, ensuring compatibility with both flat and sub-categorized sections.
+All notable changes to Kink Negotiator will be documented here.
 
-UI/UX (Velvet Interface Redesign)
-Morphing Luxury Scale: Replaced the static row of 6 dots with a dynamic pill-shaped drawer.
+This project loosely follows Keep a Changelog principles and semantic versioning.
 
-Collapsed State: Displays only the selected dot.
+---
 
-Expanded State: Morphs into a selection pill using a velvet-smooth cubic-bezier transition.
+## [0.7.0] – In Progress
 
-Space Optimization: Reduced vertical footprint by nesting activities. Introduced a "Subcategory" header level with serif typography (Playfair Display) and a directional sub-chevron.
+### Added
+- Structured development roadmap (TODO.md)
+- Version-tier planning (0.7 / 0.8 / 0.9 segmentation)
 
-Refined Activity Cards: * Compressed card padding and font sizes for higher information density.
+---
 
-Implemented a horizontal grid for "Giving" and "Receiving" labels, allowing them to sit side-by-side on desktop.
+## [0.6.0] – Velvet Interface & Architecture Migration
 
-Styling & Polish
-Modernized Tooltips: Fixed a layout bug where tooltips would wrap prematurely. Tooltips now use width: max-content and feature a dynamic z-index to hover over accordion boundaries.
+This release represents a structural evolution of the application.  
+Core data architecture was refactored and the interface was redesigned for density, elegance, and scalability.
 
-Thematic Consistency: Integrated --accent-violet borders for subcategories and custom halo glows for selected dots based on their specific value color.
+---
 
-Responsive Overrides: * Enhanced mobile layout to stack "Giving" and "Receiving" sections vertically below 600px.
+### Architectural Changes
 
-Added app-wrapper constraints (max-width 1200px) to prevent layout stretching on ultra-wide desktop monitors.
+- **Data Hierarchy Migration**  
+  Refactored `masterData` from a flat category list to a nested object structure supporting:
 
-Technical Fixes
-Hero Transition Stability: Corrected a "jumping" issue during app reveal. The hero section now collapses its physical height and padding simultaneously with the app’s fade-in, creating a seamless upward slide.
+  `Category → Subcategory → Activity`
 
-Legend Intelligence: The sticky legend now dynamically shrinks on scroll to preserve screen real estate for survey navigation.
+- **Recursive Logic Engine**  
+  Updated:
+  - Survey rendering
+  - Code generation
+  - Matrix comparison functions  
+
+  All major systems now recursively traverse nested data, allowing seamless support for both flat and sub-categorized sections.
+
+---
+
+### UI / UX – Velvet Interface Redesign
+
+- **Morphing Luxury Scale**
+  - Replaced static 6-dot row with dynamic pill-shaped drawer
+  - Collapsed state displays only selected dot
+  - Expanded state morphs into selection pill
+  - Implemented velvet-smooth cubic-bezier transition
+
+- **Space Optimization**
+  - Reduced vertical footprint by nesting activities
+  - Introduced "Subcategory" header level
+  - Applied serif typography (Playfair Display)
+  - Added directional sub-chevron indicator
+
+- **Refined Activity Cards**
+  - Compressed padding and font sizes for higher information density
+  - Implemented horizontal grid layout for "Giving" and "Receiving" labels
+  - Desktop: side-by-side layout
+  - Mobile: stacked layout below 600px
+
+---
+
+### Styling & Visual Polish
+
+- **Modernized Tooltips**
+  - Fixed premature wrapping issue
+  - Implemented `width: max-content`
+  - Added dynamic z-index to prevent accordion clipping
+
+- **Thematic Consistency**
+  - Integrated `--accent-violet` borders for subcategories
+  - Added custom halo glows for selected dots
+  - Glow color corresponds to selected scale value
+
+- **Responsive Enhancements**
+  - Improved mobile stacking behavior for input sections
+  - Added `.app-wrapper` max-width constraint (1200px)
+  - Prevented layout stretching on ultra-wide monitors
+
+---
+
+### Technical Fixes
+
+- **Hero Transition Stability**
+  - Eliminated layout "jump" during app reveal
+  - Hero now collapses height and padding simultaneously
+  - App fade-in aligns with upward slide motion
+
+- **Legend Intelligence**
+  - Sticky legend now dynamically shrinks on scroll
+  - Preserves screen real estate during survey navigation
+
+---
+
+## Versioning Notes
+
+- **Major (1.x.x)** – Architectural overhaul or breaking change
+- **Minor (0.x.0)** – Feature release or significant redesign
+- **Patch (0.0.x)** – Bug fixes, polish, performance tuning
