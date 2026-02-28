@@ -350,31 +350,69 @@ h1 {
 
 .category-block {
     margin-bottom: 20px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    overflow: visible;
+}
+
+.category-block:not(.open) .category-header {
+    border-radius: var(--radius-lg);
 }
 
 .category-header {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
-    background: var(--surface);
     padding: 20px;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     cursor: pointer;
-    box-shadow: var(--shadow-soft);
     transition: var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .category-header:hover {
-    transform: translateY(-2px);
+    background: var(--elevated);
 }
 
 .category-content {
-    margin-top: 12px;
-    display: none;
-    animation: fadeSlide 180ms ease;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    border-top: 0 solid rgba(255,255,255,0.05);
+    transition: grid-template-rows 0.4s ease, opacity 0.4s ease, border-top-width 0.4s ease, overflow 0s 0s;
 }
 
 .category-content.open {
-    display: block;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    border-top-width: 1px;
+    overflow: visible;
+    transition: grid-template-rows 0.4s ease, opacity 0.4s ease, border-top-width 0.4s ease, overflow 0s 0.4s;
+}
+
+/* Padding for flat categories (no subcategories) */
+.subcategory-wrapper > .activity-grid {
+    padding: 20px;
+}
+
+.subcategory-wrapper {
+    overflow: hidden;
+    min-height: 0;
+    transition: overflow 0s 0s;
+}
+
+.category-content.open .subcategory-wrapper {
+    overflow: visible;
+    transition: overflow 0s 0.4s;
 }
 
 @keyframes fadeSlide {
@@ -388,29 +426,28 @@ h1 {
 
 /* Tooltip for descriptions */
 .act-name-wrapper {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     position: relative;
+    margin-bottom: 8px;
 }
 
 .tooltip-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 12px;
-    height: 12px;
-    margin-left: 6px;
-    font-size: 0.8rem;
-    border: 1px solid var(--text-secondary);
-    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
     cursor: pointer;
     color: var(--text-secondary);
     user-select: none;
-    transition: background 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .tooltip-icon:hover,
 .tooltip-icon:focus {
-    background: var(--surface);
+    color: var(--accent-gold);
 }
 
 .tooltip-text {
@@ -447,21 +484,25 @@ h1 {
 }
 
 .activity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 .activity-card {
     background: var(--surface);
-    padding: 24px;
+    padding: 4px 24px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
+    flex: 1 1 310px;
+    max-width: 500px;
 }
 
 .act-name {
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+    font-size: 0.95rem;
 }
 
 .activity-desc {
@@ -471,19 +512,172 @@ h1 {
 }
 
 .side {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-sides {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 4px;
 }
 
 .row-label {
     font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    color: var(--text-secondary);
+    display: inline-block;
+}
+
+.side-header {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+/* Subcategory Hierarchy */
+.subcategory-block {
+    margin: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.subcategory-block:last-child {
+    border-bottom: none;
+}
+
+.subcategory-header {
+    padding: 8px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    transition: background 0.2s ease;
+}
+
+.subcategory-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: inherit;
+}
+
+.subcategory-header:hover {
+    background: var(--elevated);
+}
+
+.subcategory-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: grid-template-rows 0.4s ease, opacity 0.4s ease, padding 0.4s ease, overflow 0s 0s;
+}
+
+.subcategory-content.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    padding: 20px;
+    overflow: visible;
+    transition: grid-template-rows 0.4s ease, opacity 0.4s ease, padding 0.4s ease, overflow 0s 0.4s;
+}
+
+.subcategory-content > .activity-grid {
+    overflow: hidden;
+    min-height: 0;
+    transition: overflow 0s 0s;
+}
+
+.subcategory-content.open > .activity-grid {
+    overflow: visible;
+    transition: overflow 0s 0.4s;
+}
+
+/* Space Optimization for Cards */
+.activity-card {
+    padding: 6px 12px;
+    background: var(--bg); /* Darker background to contrast with subcategory surface */
+}
+
+.sub-chevron {
+    font-size: 0.8rem;
+    transition: var(--transition-fast);
+}
+
+/* =========================================================
+   FILTER CHIPS
+========================================================= */
+
+.filter-dropdown {
+    position: relative;
+}
+
+.filter-toggle {
+    background: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.filter-toggle:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.filter-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 200px;
+    background: var(--elevated);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md);
+    padding: 8px;
+    box-shadow: var(--shadow-soft);
+    z-index: 50;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.filter-menu.show {
     display: block;
 }
 
-.row-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.filter-item {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    opacity: 0.5;
+    transition: var(--transition-fast);
+}
+
+.filter-item:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.filter-item.active {
+    opacity: 1;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.filter-item.active::before {
+    content: "• ";
+    color: var(--accent-violet);
 }
 
 /* =========================================================
@@ -491,30 +685,58 @@ h1 {
 ========================================================= */
 
 .scale {
-    display: flex;
-    gap: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8px;
+    height: 32px;
+    min-width: 32px;
+    background: transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    transition: min-width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+.scale.expanded {
+    /* min-width: 150px; */
+    width: fit-content;
+    background: var(--elevated);
+    padding: 0 3px;
+    box-shadow: var(--shadow-soft);
 }
 
 .scale .dot {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: var(--transition-fast);
+    margin: 0;
+    opacity: 0;
+    width: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
     box-shadow:
         inset 0 2px 4px rgba(0,0,0,0.4),
         0 4px 10px rgba(0,0,0,0.4);
 }
 
-.scale .dot:hover {
+.scale .dot.selected {
+    width: 14px;
     opacity: 1;
-    transform: translateY(-2px);
+    transform: scale(1.2);
 }
 
-.scale .dot.selected {
-    transform: scale(1.15);
+.scale.expanded .dot {
+    width: 14px;
     opacity: 1;
+    transform: scale(1);
+    margin: 0 3px;
+}
+
+.scale.expanded .dot:hover {
+    transform: scale(1.3);
 }
 
 /* Selected shadow should be a darker/tinted halo based on the dot color */
@@ -523,6 +745,7 @@ h1 {
 .scale .dot.val-3.selected { box-shadow: 0 0 0 6px rgba(232,194,103,0.18), 0 6px 18px rgba(0,0,0,0.55); }
 .scale .dot.val-4.selected { box-shadow: 0 0 0 6px rgba(138,203,136,0.18), 0 6px 18px rgba(0,0,0,0.55); }
 .scale .dot.val-5.selected { box-shadow: 0 0 0 6px rgba(110,168,255,0.18), 0 6px 18px rgba(0,0,0,0.55); }
+.scale .dot.val-6.selected { box-shadow: 0 0 0 6px rgba(168,118,255,0.18), 0 6px 18px rgba(0,0,0,0.55); }
 .scale .dot.val-0.selected { box-shadow: 0 0 0 6px rgba(180,180,180,0.12), 0 6px 18px rgba(0,0,0,0.45); }
 
 /* Dot Colors */
@@ -531,13 +754,14 @@ h1 {
 .val-3 { background: #e8c267; }
 .val-4 { background: #8acb88; }
 .val-5 { background: #6ea8ff; }
+.val-6 { background: #a876ff; }
 .val-0 { background: #ccc; }
 
 /* Selected text reveal */
 .scale-selection-text {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    margin-top: 6px;
+    margin-top: 0;
     opacity: 1;
     transition: opacity 0.4s ease;
 }
@@ -624,25 +848,38 @@ textarea {
         font-size: 2.2rem;
     }
 
-    .scale .dot {
+    /* .scale .dot {
         width: 25px;
         height: 25px;
     }
+    .scale .dot.selected {
+        width: 25px;
+        height: 25px;
+        } */
 
     .activity-grid {
         grid-template-columns: 1fr;
     }
 
-    .row-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
     .primary-btn {
         width: 100%;
     }
+
+    .activity-sides {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    #survey-page.page.active {
+        padding: 0px;
 }
+    .app-wrapper {
+        padding: 0px;
+    }
+
+    .subcategory-content.open {
+        padding: 0px;
+    }
 
     .tooltip-text {
         left: 0;
@@ -652,6 +889,7 @@ textarea {
         width: calc(100vw - 80px); /* Fill the width of the card area */
         max-width: 300px;
     }
+}
 
 /* =========================================================
    MATRIX – COMPATIBILITY CARD SYSTEM

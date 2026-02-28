@@ -3,67 +3,73 @@
 ========================================================= */
 
 const masterData = {
-    "Physical Sexual Acts": [
-    { id: "P01", name: "Anal", desc: "Any sexual activity involving the anus." },
-    { id: "P02", name: "Anal Chastity", desc: "Restricting anal sexual access using a device or agreement." },
-    { id: "P03", name: "Anal Creampie", desc: "Ejaculation inside the anus during anal sex." },
-    { id: "P04", name: "Anal Fingering", desc: "Stimulation of the anus using fingers." },
-    { id: "P05", name: "Anal Fisting", desc: "Insertion of a hand into the anus for stimulation." },
-    { id: "P06", name: "Anal Sex", desc: "Penetrative sexual activity involving the anus." },
-    { id: "P07", name: "Anal Stretching", desc: "Gradual consensual expansion or training of anal comfort." },
-    { id: "P08", name: "Ass Licking", desc: "Oral stimulation of the buttocks or anus." },
-    { id: "P09", name: "Ass to Mouth", desc: "Transition from anal penetration to oral contact." },
-    { id: "P10", name: "Pegging", desc: "Penetrative sex where a partner uses a strap-on." },
-    { id: "P11", name: "Prostate Massage", desc: "Stimulation of the prostate for pleasure or medical benefit." },
+    "Physical Sexual Acts": {
+    "Anal": [
+        { "id": "PA01", "name": "Anal Chastity", "desc": "Restricting anal sexual access using a device." },
+        { "id": "PA02", "name": "Anal Creampie", "desc": "Ejaculating inside the anus." },
+        { "id": "PA03", "name": "Anal Fingering", "desc": "Manual stimulation of the anus with fingers." },
+        { "id": "PA04", "name": "Anal Fisting", "desc": "Insertion of the hand into the anus." },
+        { "id": "PA05", "name": "Anal Sex", "desc": "Penetrative sexual activity involving the anus." },
+        { "id": "PA06", "name": "Anal Stretching", "desc": "Gradual expansion or preparation of anal muscles." },
+        { "id": "PA07", "name": "Ass Licking", "desc": "Oral stimulation of the buttocks or anus." },
+        { "id": "PA08", "name": "Ass to Mouth", "desc": "Oral contact following anal contact." },
+        { "id": "PA09", "name": "Pegging", "desc": "Anal penetration of a male partner using a strap-on." },
+        { "id": "PA10", "name": "Prostate Massage", "desc": "Stimulation of the prostate gland through the anus." }
+    ],
 
-    { id: "P12", name: "Group/Multi-Partner", desc: "Sexual activity involving more than two participants." },
-    { id: "P13", name: "Gangbangs", desc: "One person engaging sexually with multiple partners." },
-    { id: "P14", name: "Glory Hole", desc: "Sexual contact through a barrier opening." },
-    { id: "P15", name: "Group Sex", desc: "Sexual activity involving multiple people." },
-    { id: "P16", name: "Orgy", desc: "Large group sexual activity involving many participants." },
-    { id: "P17", name: "Sex with Strangers", desc: "Consensual sexual activity with unfamiliar partners." },
-    { id: "P18", name: "Swinging", desc: "Partnered individuals exchanging sexual partners consensually." },
-    { id: "P19", name: "Threesomes", desc: "Sexual activity involving three participants." },
+    "Group/Multi-Partner": [
+        { "id": "PG01", "name": "Gangbangs", "desc": "Multiple partners engaging sexually with one person." },
+        { "id": "PG02", "name": "Glory Hole", "desc": "Sexual activity through an anonymous barrier." },
+        { "id": "PG03", "name": "Group Sex", "desc": "Sexual activity involving more than two people." },
+        { "id": "PG04", "name": "Orgy", "desc": "Unrestricted multi-partner sexual activity." },
+        { "id": "PG05", "name": "Sex with Strangers", "desc": "Sexual activity with unfamiliar partners." },
+        { "id": "PG06", "name": "Swinging", "desc": "Consensual partner exchange between couples." },
+        { "id": "PG07", "name": "Threesomes", "desc": "Sexual activity involving three people." }
+    ],
 
-    { id: "P20", name: "Manual Stimulation", desc: "Sexual stimulation using hands." },
-    { id: "P21", name: "Fingering", desc: "Manual stimulation of genitalia using fingers." },
-    { id: "P22", name: "Handjobs", desc: "Manual stimulation of a penis using hands." },
-    { id: "P23", name: "Masturbation", desc: "Self-stimulation for sexual pleasure." },
-    { id: "P24", name: "Mutual Masturbation", desc: "Partners masturbating while observing each other." },
-    { id: "P25", name: "Ordered to Masturbate", desc: "Being instructed to masturbate by a partner." },
-    { id: "P26", name: "Tit Fucking", desc: "Penis stimulation between breasts." },
+    "Manual Stimulation": [
+        { "id": "PM01", "name": "Fingering", "desc": "Manual genital stimulation using fingers." },
+        { "id": "PM02", "name": "Handjobs", "desc": "Manual stimulation of the penis using hands." },
+        { "id": "PM03", "name": "Masturbation", "desc": "Self-stimulation of one's own genitals." },
+        { "id": "PM04", "name": "Mutual Masturbation", "desc": "Partners masturbating together." },
+        { "id": "PM05", "name": "Ordered to Masturbate", "desc": "Being instructed to masturbate." },
+        { "id": "PM06", "name": "Tit Fucking", "desc": "Penis stimulation between breasts." }
+    ],
 
-    { id: "P27", name: "Oral", desc: "Oral-genital sexual stimulation." },
-    { id: "P28", name: "Blow Jobs", desc: "Oral stimulation of a penis." },
-    { id: "P29", name: "Deep Throating", desc: "Deep oral penetration of the mouth and throat." },
-    { id: "P30", name: "Eating Pussy", desc: "Oral stimulation of vulva and clitoris." },
-    { id: "P31", name: "Face Fucking", desc: "Penile oral penetration with thrusting motion." },
-    { id: "P32", name: "Face Riding", desc: "Sitting on a partner’s face for oral stimulation." },
-    { id: "P33", name: "Gagging/Choked by Cock", desc: "Oral sex that approaches gag reflex limits." },
-    { id: "P34", name: "Road Head", desc: "Receiving oral sex while in a moving vehicle." },
-    { id: "P35", name: "Throat Fucking", desc: "Forceful or deep oral penetration of the throat." },
+    "Oral": [
+        { "id": "PO01", "name": "Blow Jobs", "desc": "Oral stimulation of the penis." },
+        { "id": "PO02", "name": "Deep Throating", "desc": "Penis oral penetration of the throat." },
+        { "id": "PO03", "name": "Eating Pussy", "desc": "Oral stimulation of the vulva." },
+        { "id": "PO04", "name": "Face Fucking", "desc": "Deep oral penetration of the mouth." },
+        { "id": "PO05", "name": "Face Riding", "desc": "Oral stimulation while sitting on the face." },
+        { "id": "PO06", "name": "Gagging/Choked by Cock", "desc": "Gag reflex stimulation during oral sex." },
+        { "id": "PO07", "name": "Road Head", "desc": "Oral sex performed while traveling." },
+        { "id": "PO08", "name": "Throat Fucking", "desc": "Deep penetration of the throat." }
+    ],
 
-    { id: "P36", name: "Orgasm & Ejaculatory Focus", desc: "Activities centered around orgasm or ejaculation." },
-    { id: "P37", name: "Being Cummed On", desc: "Partner ejaculating onto body surface." },
-    { id: "P38", name: "Cum", desc: "Exposure to or handling of semen." },
-    { id: "P39", name: "Edging", desc: "Approaching orgasm without climax." },
-    { id: "P40", name: "Facials", desc: "Ejaculation onto the face." },
-    { id: "P41", name: "Female Ejaculation", desc: "Release of fluid during female orgasm." },
-    { id: "P42", name: "Multiple Orgasms", desc: "Experiencing more than one orgasm in a session." },
-    { id: "P43", name: "Orgasm Control", desc: "Managing intensity or timing of orgasm." },
-    { id: "P44", name: "Orgasm Denial", desc: "Preventing orgasm after sexual arousal." },
-    { id: "P45", name: "Swallowing Cum", desc: "Oral ingestion of semen." },
-    { id: "P46", name: "Tease & Denial", desc: "Alternating stimulation and withholding orgasm." },
+    "Orgasm & Ejaculatory Focus": [
+        { "id": "PE01", "name": "Being Cummed On", "desc": "Ejaculating onto a partner's body." },
+        { "id": "PE02", "name": "Cum", "desc": "Ejaculation." },
+        { "id": "PE03", "name": "Edging", "desc": "Approaching orgasm without climaxing." },
+        { "id": "PE04", "name": "Facials", "desc": "Ejaculation onto the face." },
+        { "id": "PE05", "name": "Female Ejaculation", "desc": "Release of fluid during female orgasm." },
+        { "id": "PE06", "name": "Multiple Orgasms", "desc": "Experiencing orgasm more than once." },
+        { "id": "PE07", "name": "Orgasm Control", "desc": "Managing timing or intensity of orgasm." },
+        { "id": "PE08", "name": "Orgasm Denial", "desc": "Preventing orgasm." },
+        { "id": "PE09", "name": "Swallowing Cum", "desc": "Ingesting semen." },
+        { "id": "PE10", "name": "Tease & Denial", "desc": "Alternating arousal and prevention of orgasm." }
+    ],
 
-    { id: "P47", name: "Vaginal/Genital Penetration", desc: "Penetrative sex involving genital entry." },
-    { id: "P48", name: "Bareback", desc: "Sexual penetration without barrier protection." },
-    { id: "P49", name: "Creampie", desc: "Ejaculation inside a partner during penetration." },
-    { id: "P50", name: "Double Penetration", desc: "Two penetrative insertions simultaneously." },
-    { id: "P51", name: "PiV Intercourse", desc: "Penis-in-vagina sexual intercourse." },
-    { id: "P52", name: "Triple Penetration", desc: "Three simultaneous penetrations." },
-    { id: "P53", name: "Vaginal Fisting", desc: "Insertion of a hand into the vagina." },
-    { id: "P54", name: "Vaginal Stretching", desc: "Gradual consensual expansion of vaginal comfort." }
-],
+    "Vaginal/Genital Penetration": [
+        { "id": "PV01", "name": "Bareback", "desc": "Unprotected penetrative sex." },
+        { "id": "PV02", "name": "Creampie", "desc": "Ejaculating inside the vagina." },
+        { "id": "PV03", "name": "Double Penetration", "desc": "Two penetrations simultaneously." },
+        { "id": "PV04", "name": "PiV Intercourse", "desc": "Penis-in-vagina sexual intercourse." },
+        { "id": "PV05", "name": "Triple Penetration", "desc": "Three simultaneous penetrations." },
+        { "id": "PV06", "name": "Vaginal Fisting", "desc": "Insertion of the hand into the vagina." },
+        { "id": "PV07", "name": "Vaginal Stretching", "desc": "Gradual vaginal expansion or preparation." }
+    ]
+},
     "Impact Play": [
         { id: "I01", name: "Spanking", desc: "Striking for sensation or discipline." },
         { id: "I02", name: "Cane Play", desc: "High-intensity sting-focused impact." }
@@ -80,7 +86,8 @@ const scaleLabels = {
     2: "Maybe",
     3: "Sometimes",
     4: "Like It",
-    5: "Favorite"
+    5: "Favorite",
+    6: "Curious"
 };
 
 /* =========================================================
@@ -126,36 +133,126 @@ function setupHero() {
 function renderSurvey() {
     const container = document.getElementById("survey-container");
     if (!container) return;
-
     container.innerHTML = "";
 
-    for (const [category, items] of Object.entries(masterData)) {
+    for (const [category, content] of Object.entries(masterData)) {
+        const catBlock = document.createElement("div");
+        catBlock.className = "category-block";
 
-        const block = document.createElement("div");
-        block.className = "category-block";
-
-        const header = document.createElement("div");
-        header.className = "category-header";
-        header.innerHTML = `
-            ${category}
-            <span class="chevron">▾</span>
+        catBlock.innerHTML = `
+            <div class="category-header">
+                <div class="header-left">
+                    <span class="chevron">▸</span>
+                    ${category}
+                </div>
+            </div>
+            <div class="category-content">
+                <div class="subcategory-wrapper"></div>
+            </div>
         `;
 
-        const content = document.createElement("div");
-        content.className = "category-content";
+        const subWrapper = catBlock.querySelector(".subcategory-wrapper");
 
-        const grid = document.createElement("div");
-        grid.className = "activity-grid";
+        // Check if the content is an Array (Flat) or an Object (Nested Subcategories)
+        if (Array.isArray(content)) {
+            // Flat Category: Create one "General" grid
+            // Add filters to the Category Header
+            const filterBar = renderHeaderFilters(content, "activity");
+            catBlock.querySelector(".header-left").appendChild(filterBar);
 
-        items.forEach(item => {
-            grid.appendChild(renderActivityCard(item));
+            const grid = document.createElement("div");
+            grid.className = "activity-grid";
+            content.forEach(item => grid.appendChild(renderActivityCard(item)));
+            subWrapper.appendChild(grid);
+        } else {
+            // Nested Category: Loop through subcategories
+            const subCats = Object.keys(content).map(k => ({ name: k, id: "sub-" + k.replace(/[^a-zA-Z0-9]/g, '-') }));
+            
+            // Add Subcategory filters to the Category Header
+            const filterBar = renderHeaderFilters(subCats, "subcategory");
+            catBlock.querySelector(".header-left").appendChild(filterBar);
+
+            for (const [subCat, items] of Object.entries(content)) {
+                const subBlock = document.createElement("div");
+                subBlock.className = "subcategory-block";
+                subBlock.id = "sub-" + subCat.replace(/[^a-zA-Z0-9]/g, '-');
+
+                subBlock.innerHTML = `
+                    <div class="subcategory-header">
+                        <div class="header-left">
+                            <span class="sub-chevron">▸</span>
+                            <span class="subcategory-title">${subCat}</span>
+                        </div>
+                    </div>
+                    <div class="subcategory-content">
+                        <div class="activity-grid"></div>
+                    </div>
+                `;
+                
+                // Add Activity filters to the Subcategory Header
+                const subFilterBar = renderHeaderFilters(items, "activity");
+                subBlock.querySelector(".header-left").appendChild(subFilterBar);
+
+                const grid = subBlock.querySelector(".activity-grid");
+                items.forEach(item => grid.appendChild(renderActivityCard(item)));
+                subWrapper.appendChild(subBlock);
+            }
+        }
+        container.appendChild(catBlock);
+    }
+}
+
+function renderHeaderFilters(items, type) {
+    const dropdown = document.createElement("div");
+    dropdown.className = "filter-dropdown";
+    
+    // Prevent clicks on the filter bar from toggling the accordion
+    dropdown.addEventListener("click", (e) => e.stopPropagation());
+
+    const toggle = document.createElement("button");
+    toggle.className = "filter-toggle";
+    toggle.textContent = "Filter ▾";
+    
+    toggle.addEventListener("click", () => {
+        const menu = dropdown.querySelector(".filter-menu");
+        // Close other open menus
+        document.querySelectorAll(".filter-menu.show").forEach(m => {
+            if (m !== menu) m.classList.remove("show");
+        });
+        menu.classList.toggle("show");
+    });
+
+    dropdown.appendChild(toggle);
+
+    const menu = document.createElement("div");
+    menu.className = "filter-menu";
+
+    items.forEach(item => {
+        const option = document.createElement("div");
+        option.className = "filter-item active";
+        option.textContent = item.name;
+        
+        option.addEventListener("click", () => {
+            option.classList.toggle("active");
+            const isVisible = option.classList.contains("active");
+            
+            let target;
+            if (type === "subcategory") {
+                target = document.getElementById(item.id);
+            } else {
+                target = document.querySelector(`.activity-card[data-id="${item.id}"]`);
+            }
+
+            if (target) {
+                target.style.display = isVisible ? "" : "none";
+            }
         });
 
-        content.appendChild(grid);
-        block.appendChild(header);
-        block.appendChild(content);
-        container.appendChild(block);
-    }
+        menu.appendChild(option);
+    });
+
+    dropdown.appendChild(menu);
+    return dropdown;
 }
 
 function renderActivityCard(item) {
@@ -163,17 +260,24 @@ function renderActivityCard(item) {
     const card = document.createElement("div");
     card.className = "activity-card";
     card.dataset.name = item.name.toLowerCase();
+    card.dataset.id = item.id;
     card.style.position = "relative"; // ensure tooltip absolute positioning works
 
     card.innerHTML = `
         <div class="act-name-wrapper">
             <span class="act-name">${item.name}</span>
-            <span class="tooltip-icon" data-desc="${item.desc}" tabindex="0">1</span>
+            <span class="tooltip-icon" data-desc="${item.desc}" tabindex="0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </span>
             <div class="tooltip-text">${item.desc}</div>
         </div>
 
-        ${renderSide(item, "gs", "gh", "Giving")}
-        ${renderSide(item, "rs", "rh", "Receiving")}
+        <div class="activity-sides">
+            ${renderSide(item, "gs", "gh", "Giving")}
+            ${renderSide(item, "rs", "rh", "Receiving")}
+        </div>
     `;
 
     return card;
@@ -182,20 +286,15 @@ function renderActivityCard(item) {
 function renderSide(item, scalePrefix, triedPrefix, label) {
     return `
         <div class="side">
-            <span class="row-label">${label}</span>
-            <div class="row-content">
-                <input type="hidden" id="${scalePrefix}-${item.id}" value="0">
-                <div class="scale" data-target="${scalePrefix}-${item.id}">
-                    ${renderDots()}
-                </div>
-                <label class="tried">
-                    <input type="checkbox" id="${triedPrefix}-${item.id}">
-                    <span class="switch"></span>
-                    <span class="tried-label">Tried?</span>
-                </label>
+            <div class="side-header">
+                <span class="row-label">${label}:</span>
+                <span class="scale-selection-text" id="label-${scalePrefix}-${item.id}">
+                    No Selection
+                </span>
             </div>
-            <div class="scale-selection-text" id="label-${scalePrefix}-${item.id}">
-                No Selection
+            <input type="hidden" id="${scalePrefix}-${item.id}" value="0">
+            <div class="scale" data-target="${scalePrefix}-${item.id}">
+                ${renderDots()}
             </div>
         </div>
     `;
@@ -204,6 +303,7 @@ function renderSide(item, scalePrefix, triedPrefix, label) {
 function renderDots() {
     return `
         <span class="dot val-0 selected" data-value="0"></span>
+        <span class="dot val-6" data-value="6"></span>
         <span class="dot val-1" data-value="1"></span>
         <span class="dot val-2" data-value="2"></span>
         <span class="dot val-3" data-value="3"></span>
@@ -219,72 +319,98 @@ function renderDots() {
 
 function setupEventListeners() {
 
-    /* Accordion */
+    /* Consolidated Click Handler for Accordions, Dots, and Tooltips */
     document.addEventListener("click", e => {
-        const header = e.target.closest(".category-header");
-        if (!header) return;
-
-        const content = header.nextElementSibling;
-        const open = content.classList.toggle("open");
-
-        const chevron = header.querySelector(".chevron");
-        if (chevron) {
-            chevron.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+        // Close filter menus if clicking outside
+        if (!e.target.closest(".filter-dropdown")) {
+            document.querySelectorAll(".filter-menu.show").forEach(m => m.classList.remove("show"));
         }
-    });
 
-    /* Dot Selection */
-    document.addEventListener("click", e => {
-        const dot = e.target.closest(".dot");
-        if (!dot) return;
-
-        const scale = dot.closest(".scale");
-        if (!scale) return;
-
-        const value = parseInt(dot.dataset.value);
-        const targetId = scale.dataset.target;
-        const input = document.getElementById(targetId);
-
-        if (input) input.value = value;
-
-        scale.querySelectorAll(".dot").forEach(d =>
-            d.classList.toggle("selected", d === dot)
-        );
-
-        updateSelectionLabel(targetId, value);
-    });
-
-    /* Tooltip toggle (click/tap) */
-    document.addEventListener("click", e => {
-        const icon = e.target.closest(".tooltip-icon");
-        const insideTooltip = e.target.closest(".tooltip-text");
-        if (!icon) {
-            if (insideTooltip) return; // clicking inside open tooltip should not close it
-            // click outside icon hides any open tooltips
-            document.querySelectorAll(".tooltip-text.active").forEach(t => t.classList.remove("active"));
+        // --- Accordion & Sub-Accordion Logic ---
+        const catHeader = e.target.closest(".category-header");
+        if (catHeader) {
+            const content = catHeader.nextElementSibling;
+            const open = content.classList.toggle("open");
+            const block = catHeader.closest(".category-block");
+            if (block) block.classList.toggle("open", open);
+            catHeader.querySelector(".chevron").style.transform = open ? "rotate(90deg)" : "rotate(0deg)";
             return;
         }
 
-        e.stopPropagation();
-        const text = icon.parentElement.querySelector(".tooltip-text");
-        if (text) {
-            text.classList.toggle("active");
+        const subHeader = e.target.closest(".subcategory-header");
+        if (subHeader) {
+            const content = subHeader.nextElementSibling;
+            const open = content.classList.toggle("open");
+            subHeader.querySelector(".sub-chevron").style.transform = open ? "rotate(90deg)" : "rotate(0deg)";
+            subHeader.style.color = open ? "var(--accent-gold)" : "var(--text-secondary)";
+            return;
+        }
+
+        // --- Scale & Dot Logic ---
+        const scale = e.target.closest(".scale");
+        
+        // Close other expanded scales
+        const expandedScales = document.querySelectorAll(".scale.expanded");
+        if (!scale) {
+            expandedScales.forEach(s => s.classList.remove("expanded"));
+        } else {
+            expandedScales.forEach(s => { if (s !== scale) s.classList.remove("expanded"); });
+        }
+
+        if (scale) {
+            // If collapsed, expand it
+            if (!scale.classList.contains("expanded")) {
+                scale.classList.add("expanded");
+                return;
+            }
+
+            // If expanded, check for dot selection
+            const dot = e.target.closest(".dot");
+            if (dot) {
+                const value = parseInt(dot.dataset.value);
+                const targetId = scale.dataset.target;
+                const input = document.getElementById(targetId);
+                if (input) input.value = value;
+                scale.querySelectorAll(".dot").forEach(d => d.classList.toggle("selected", d === dot));
+                updateSelectionLabel(targetId, value);
+            }
+            // Collapse after selection or if clicking empty space in scale
+            scale.classList.remove("expanded");
+            return;
+        }
+
+        // --- Tooltip Logic ---
+        const clickedIcon = e.target.closest(".tooltip-icon");
+
+        // Close all tooltips that aren't the one being toggled.
+        // If the click was outside, this will close the last open one.
+        document.querySelectorAll(".tooltip-text.active").forEach(activeText => {
+            const parentIcon = activeText.parentElement.querySelector(".tooltip-icon");
+            if (parentIcon !== clickedIcon) {
+                activeText.classList.remove("active");
+            }
+        });
+
+        // If an icon was clicked, toggle its specific tooltip.
+        if (clickedIcon) {
+            const textToToggle = clickedIcon.parentElement.querySelector(".tooltip-text");
+            if (textToToggle) {
+                textToToggle.classList.toggle("active");
+            }
         }
     });
 
-    /* Keyboard support: show on focus, hide on blur */
+    let isMouseDown = false;
+    document.addEventListener("mousedown", () => (isMouseDown = true));
+    document.addEventListener("mouseup", () => (isMouseDown = false));
+
+    // Keyboard accessibility: Show tooltip on focus
     document.addEventListener("focusin", e => {
+        if (isMouseDown) return;
         const icon = e.target.closest(".tooltip-icon");
         if (icon) {
             const text = icon.parentElement.querySelector(".tooltip-text");
-            if (text) text.classList.add("active");
-        }
-    });
-    document.addEventListener("focusout", e => {
-        const icon = e.target.closest(".tooltip-icon");
-        if (icon) {
-            const text = icon.parentElement.querySelector(".tooltip-text");
-            if (text) text.classList.remove("active");
+            if (text) text.classList.add("active"); // Simply show on focus
         }
     });
 
@@ -375,16 +501,30 @@ function generateShortCode() {
     const name = document.getElementById("userName").value || "Anon";
     const responses = {};
 
-    Object.values(masterData).forEach(items => {
-        items.forEach(item => {
-            responses[item.id] = [
-                document.getElementById(`gh-${item.id}`).checked ? 1 : 0,
-                parseInt(document.getElementById(`gs-${item.id}`).value),
-                document.getElementById(`rh-${item.id}`).checked ? 1 : 0,
-                parseInt(document.getElementById(`rs-${item.id}`).value)
-            ];
-        });
-    });
+    // Recursive helper to find all items in nested or flat structures
+    const processData = (data) => {
+        if (Array.isArray(data)) {
+            data.forEach(item => {
+                const gh = document.getElementById(`gh-${item.id}`);
+                const gs = document.getElementById(`gs-${item.id}`);
+                const rh = document.getElementById(`rh-${item.id}`);
+                const rs = document.getElementById(`rs-${item.id}`);
+                
+                if (gs && rs) {
+                    responses[item.id] = [
+                        gh.checked ? 1 : 0,
+                        parseInt(gs.value),
+                        rh.checked ? 1 : 0,
+                        parseInt(rs.value)
+                    ];
+                }
+            });
+        } else {
+            Object.values(data).forEach(subData => processData(subData));
+        }
+    };
+
+    processData(masterData);
 
     const blob = pako.deflate(JSON.stringify({ n: name, r: responses }));
     const code = btoa(String.fromCharCode.apply(null, blob));
@@ -400,19 +540,15 @@ function generateShortCode() {
 
 function runComparison() {
     const rawCodes = document.getElementById("compareBox").value.trim().split("\n");
-
     const participants = rawCodes.map(c => {
         try {
             const bin = new Uint8Array(atob(c.trim()).split("").map(x => x.charCodeAt(0)));
             return JSON.parse(pako.inflate(bin, { to: "string" }));
-        } catch {
-            return null;
-        }
+        } catch { return null; }
     }).filter(Boolean);
 
     const container = document.getElementById("matrix-results");
     container.innerHTML = "";
-
     if (participants.length < 2) {
         container.innerHTML = `<div class="matrix-empty">Enter at least two valid codes.</div>`;
         return;
@@ -420,20 +556,21 @@ function runComparison() {
 
     const activities = [];
 
-    Object.values(masterData).forEach(items => {
-        items.forEach(item => {
-            const data = participants.map(p => p.r[item.id] || [0,0,0,0]);
+    // Recursive helper to collect all activity items for comparison
+    const collectItems = (data) => {
+        if (Array.isArray(data)) {
+            data.forEach(item => {
+                const participantResponses = participants.map(p => p.r[item.id] || [0,0,0,0]);
+                const score = calculateCompatibility(participantResponses);
+                if (score > 0) activities.push({ item, data: participantResponses, score });
+            });
+        } else {
+            Object.values(data).forEach(subData => collectItems(subData));
+        }
+    };
 
-            const score = calculateCompatibility(data);
-
-            if (score > 0) {
-                activities.push({ item, data, score });
-            }
-        });
-    });
-
+    collectItems(masterData);
     activities.sort((a,b) => b.score - a.score);
-
     activities.forEach(a => {
         container.appendChild(renderMatrixCard(a.item, participants, a.data, a.score));
     });
