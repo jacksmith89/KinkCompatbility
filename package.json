@@ -1,0 +1,24 @@
+{
+  "name": "kinkcompatbility",
+  "version": "1.0.0",
+  "description": "A web app for establishing and sharing kink lists",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksmith89/KinkCompatbility.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jacksmith89/KinkCompatbility/issues"
+  },
+  "homepage": "https://github.com/jacksmith89/KinkCompatbility#readme",
+  "dependencies": {
+    "simple-git": "^3.32.3"
+  }
+}
