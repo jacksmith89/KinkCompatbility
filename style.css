@@ -638,7 +638,7 @@ h1 {
 .filter-menu {
     position: absolute;
     top: 110%;
-    left: 0;
+    right: 0;
     width: 200px;
     background: var(--elevated);
     border: 1px solid rgba(255,255,255,0.1);

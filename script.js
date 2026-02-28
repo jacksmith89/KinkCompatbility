@@ -158,7 +158,7 @@ function renderSurvey() {
             // Flat Category: Create one "General" grid
             // Add filters to the Category Header
             const filterBar = renderHeaderFilters(content, "activity");
-            catBlock.querySelector(".header-left").appendChild(filterBar);
+            catBlock.querySelector(".category-header").appendChild(filterBar);
 
             const grid = document.createElement("div");
             grid.className = "activity-grid";
@@ -170,7 +170,7 @@ function renderSurvey() {
             
             // Add Subcategory filters to the Category Header
             const filterBar = renderHeaderFilters(subCats, "subcategory");
-            catBlock.querySelector(".header-left").appendChild(filterBar);
+            catBlock.querySelector(".category-header").appendChild(filterBar);
 
             for (const [subCat, items] of Object.entries(content)) {
                 const subBlock = document.createElement("div");
@@ -191,7 +191,7 @@ function renderSurvey() {
                 
                 // Add Activity filters to the Subcategory Header
                 const subFilterBar = renderHeaderFilters(items, "activity");
-                subBlock.querySelector(".header-left").appendChild(subFilterBar);
+                subBlock.querySelector(".subcategory-header").appendChild(subFilterBar);
 
                 const grid = subBlock.querySelector(".activity-grid");
                 items.forEach(item => grid.appendChild(renderActivityCard(item)));
