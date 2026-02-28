@@ -20,5 +20,13 @@
   "homepage": "https://github.com/jacksmith89/KinkCompatbility#readme",
   "dependencies": {
     "simple-git": "^3.32.3"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
